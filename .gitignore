@@ -2,8 +2,10 @@
 
 # dependencies
 /node_modules
+/project_example
 /.pnp
 .pnp.js
+config.js
 
 # testing
 /coverage
