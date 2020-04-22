@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends Component {
   state = {
-    searchText: '',
-    searched: false
+    searchText: ''
   }
   
   onSearchChange = e => {
@@ -12,9 +12,12 @@ class SearchForm extends Component {
   
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSearch(this.query.value);
-    this.setState({searched: true});
     e.currentTarget.reset();
+    this.props.onSearch(this.state.searchText);
+    // Big shoutout to Scott Adam of TTH for giving this pointer using history props
+    let query = this.state.searchText;
+    let path = `/search/${query}`;
+    this.props.history.push(path);
   }
   
   render() {  
@@ -36,4 +39,4 @@ class SearchForm extends Component {
     );
   }
 }
-export default SearchForm;
+export default withRouter(SearchForm);
